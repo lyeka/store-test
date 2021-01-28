@@ -64,6 +64,33 @@ func (s *Storage) CreateComment(c *model.Comment) (int64, error) {
 	return cid, nil
 }
 
+func (s *Storage) GetUser(uid int64) (*model.User, error) {
+	user := model.User{}
+	err := s.db.Select(&user, "select * from user where id = ?", uid)
+	return &user, err
+}
+
+func (s *Storage) GetPost(pid int64) (*model.Post, error) {
+	post := model.Post{}
+	err := s.db.Select(&post, "select * from post where id = ?", pid)
+	return &post, err
+}
+
+func (s *Storage) GetPostComment(pid int64) ([]*model.Comment, error) {
+	var postComments []*model.Comment
+	err := s.db.Select(&postComments, "select * from comment where pid = ?", pid)
+	return postComments, err
+}
+
+func (s *Storage) FindUser(u *model.User) ([]*model.User, error) {
+
+	return nil, nil
+}
+
+func (s *Storage) FindPost(p *model.Post) ([]*model.Post, error) {
+	return nil, nil
+}
+
 // 清空指定数据表
 // 仅用于测试时前置调用清理数据
 func (s *Storage) truncateTables(tables []string) {

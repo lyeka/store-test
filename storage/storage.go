@@ -15,6 +15,12 @@ type Storage interface {
 	CreateUser(u *model.User) (int64, error)
 	CreatePost(p *model.Post) (int64, error)
 	CreateComment(c *model.Comment) (int64, error)
+
+	GetUser(uid int64) (*model.User, error)
+	GetPost(pid int64) (*model.Post, error)
+	GetPostComment(pid int64) ([]*model.Comment, error)
+	FindUser(u *model.User) ([]*model.User, error)
+	FindPost(p *model.Post) ([]*model.Post, error)
 }
 
 var Instance Storage

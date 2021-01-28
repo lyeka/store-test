@@ -1,0 +1,30 @@
+@startuml
+
+entity "user" {
+    用户表
+    ==
+    #id : int <<generated>>
+    *name : varchar(64)
+    *mobile : varchar(11)
+}
+
+entity "post" {
+    文章表
+    ==
+    #id : int <<generated>>
+    *uid : int
+    *title : varchar(64)
+    *content : text
+}
+
+entity "comment" {
+    评论表
+    ==
+    #id : int(10) <<generated>>
+    *pid : int(10)
+    *cid : int(10) <<default:'0'>>
+    *uid : int(10)
+    *content : varchar(255)
+}
+
+@enduml
